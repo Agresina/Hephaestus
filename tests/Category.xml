@@ -1,0 +1,25 @@
+<class name="Category">	
+	<atb name="name" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="description" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="picture_url" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>Url</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="item" association="true">
+		<type>Item</type>	
+		<multiplicity>OneToMany</multiplicity>
+		<optional>false</optional>
+	</atb>	
+</class>

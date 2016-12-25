@@ -1,0 +1,63 @@
+<class name="Item">	
+	<atb name="SKU" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>Pattern(\w{2}-\w{4})</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="name" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="description" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="price" association="false">
+		<type>Double</type>
+		<listConstraint>			
+			<constraint>NotNull</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="tags" association="false">
+		<type>String</type>
+	</atb>
+	<atb name="picture_url" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>Url</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="canceled" association="false">
+		<type>boolean</type>
+	</atb>
+	<atb name="comment" association="true">
+		<type>Comment</type>	
+		<multiplicity>OneToMany</multiplicity>
+		<optional>false</optional>
+	</atb>	
+	<atb name="stock" association="true">
+		<type>Stock</type>	
+		<multiplicity>OneToMany</multiplicity>
+		<optional>false</optional>
+	</atb>	
+	<atb name="category" association="true">
+		<type>Category</type>	
+		<multiplicity>ManyToOne</multiplicity>
+		<optional>false</optional>
+	</atb>	
+	<atb name="tax" association="true">
+		<type>Tax</type>	
+		<multiplicity>ManyToOne</multiplicity>
+		<optional>false</optional>
+	</atb>	
+	<atb name="quantity" association="true">
+		<type>Quantity</type>	
+		<multiplicity>OneToMany</multiplicity>
+		<optional>false</optional>
+	</atb>	
+</class>

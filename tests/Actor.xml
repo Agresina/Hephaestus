@@ -1,0 +1,44 @@
+<class name="Actor">	
+	<atb name="name" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="surname" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="email" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>Email</constraint> 			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="phone" association="false">
+		<type>String</type>
+	</atb>
+	<atb name="message Folder" association="true">
+		<type>Message Folder</type>	
+		<multiplicity>OneToMany</multiplicity>
+		<optional>false</optional>
+	</atb>	
+	<atb name="userAccount" association="true">
+		<type>UserAccount</type>	
+		<multiplicity>OneToOne</multiplicity>
+		<optional>false</optional>
+	</atb>	
+	<atb name="message" association="true">
+		<type>Message</type>	
+		<multiplicity>OneToMany</multiplicity>
+		<optional>true</optional>
+	</atb>	
+	<atb name="message" association="true">
+		<type>Message</type>	
+		<multiplicity>OneToMany</multiplicity>
+		<optional>true</optional>
+	</atb>	
+</class>

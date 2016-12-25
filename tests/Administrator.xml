@@ -1,0 +1,3 @@
+<class name="Administrator">
+	<superclass>Actor</superclass>
+</class>

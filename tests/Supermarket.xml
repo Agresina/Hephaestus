@@ -1,0 +1,26 @@
+<class name="Supermarket">	
+	<atb name="name" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="description" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="logo" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>Url</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="welcomeMessage" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+</class>

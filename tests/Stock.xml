@@ -1,0 +1,18 @@
+<class name="Stock">	
+	<atb name="amount" association="false">
+		<type>Integer</type>
+		<listConstraint>			
+			<constraint>NotNull</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="item" association="true">
+		<type>Item</type>	
+		<multiplicity>ManyToOne</multiplicity>
+		<optional>false</optional>
+	</atb>	
+	<atb name="warehouse" association="true">
+		<type>Warehouse</type>	
+		<multiplicity>ManyToOne</multiplicity>
+		<optional>true</optional>
+	</atb>	
+</class>

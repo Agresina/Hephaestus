@@ -1,0 +1,17 @@
+<class name="Tax">	
+	<atb name="name" association="false">
+		<type>String</type>
+	</atb>
+	<atb name="value" association="false">
+		<type>Integer</type>
+		<listConstraint>			
+			<constraint>Range(0,100)</constraint> 			
+			<constraint>NotNull</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="item" association="true">
+		<type>Item</type>	
+		<multiplicity>OneToMany</multiplicity>
+		<optional>false</optional>
+	</atb>	
+</class>

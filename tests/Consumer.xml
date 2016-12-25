@@ -1,0 +1,13 @@
+<class name="Consumer">
+	<superclass>Actor</superclass>	
+	<atb name="orderInvoice" association="true">
+		<type>OrderInvoice</type>	
+		<multiplicity>OneToMany</multiplicity>
+		<optional>true</optional>
+	</atb>	
+	<atb name="shoppingCart" association="true">
+		<type>ShoppingCart</type>	
+		<multiplicity>OneToOne</multiplicity>
+		<optional>false</optional>
+	</atb>	
+</class>

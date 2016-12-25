@@ -1,0 +1,14 @@
+<class name="UserAccount">	
+	<atb name="username" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>Unique, NotBlank,Size(5,32)</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="password" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank,Size(5,32)</constraint> 
+		</listConstraint>
+	</atb>
+</class>

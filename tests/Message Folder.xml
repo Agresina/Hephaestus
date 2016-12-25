@@ -1,0 +1,15 @@
+<class name="Message Folder">	
+	<atb name="name" association="false">
+		<type>String</type>
+	</atb>
+	<atb name="actor" association="true">
+		<type>Actor</type>	
+		<multiplicity>ManyToOne</multiplicity>
+		<optional>false</optional>
+	</atb>	
+	<atb name="message" association="true">
+		<type>Message</type>	
+		<multiplicity>OneToMany</multiplicity>
+		<optional>false</optional>
+	</atb>	
+</class>

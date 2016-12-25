@@ -1,0 +1,13 @@
+<class name="Quantity">	
+	<atb name="amount" association="false">
+		<type>Integer</type>
+		<listConstraint>			
+			<constraint>Min(1)</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="item" association="true">
+		<type>Item</type>	
+		<multiplicity>ManyToOne</multiplicity>
+		<optional>false</optional>
+	</atb>	
+</class>

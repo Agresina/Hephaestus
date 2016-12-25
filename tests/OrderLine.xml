@@ -1,0 +1,45 @@
+<class name="OrderLine">	
+	<atb name="amount" association="false">
+		<type>Integer</type>
+		<listConstraint>			
+			<constraint>Min(0)</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="price" association="false">
+		<type>Double</type>
+		<listConstraint>			
+			<constraint>NotNull</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="SKU" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>Pattern(\w{2}-\w{4})</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="name" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="description" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="nameTax" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="valueTax" association="false">
+		<type>Integer</type>
+		<listConstraint>			
+			<constraint>NotNull</constraint> 			
+			<constraint>Range(0,100)</constraint> 
+		</listConstraint>
+	</atb>
+</class>

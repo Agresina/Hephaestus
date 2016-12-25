@@ -1,0 +1,39 @@
+<class name="Message">
+	<superclass>Message Folder</superclass>	
+	<atb name="sender" association="false">
+		<type>Actor</type>
+		<listConstraint>			
+			<constraint>NotNull</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="recipient" association="false">
+		<type>Actor</type>
+		<listConstraint>			
+			<constraint>NotNull</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="subject" association="false">
+		<type>String</type>
+	</atb>
+	<atb name="body" association="false">
+		<type>String</type>
+	</atb>
+	<atb name="moment" association="false">
+		<type>Date</type>
+	</atb>
+	<atb name="message Folder" association="true">
+		<type>Message Folder</type>	
+		<multiplicity>ManyToOne</multiplicity>
+		<optional>false</optional>
+	</atb>	
+	<atb name="actor" association="true">
+		<type>Actor</type>	
+		<multiplicity>ManyToOne</multiplicity>
+		<optional>true</optional>
+	</atb>	
+	<atb name="actor" association="true">
+		<type>Actor</type>	
+		<multiplicity>ManyToOne</multiplicity>
+		<optional>true</optional>
+	</atb>	
+</class>

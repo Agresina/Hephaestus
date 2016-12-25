@@ -1,0 +1,52 @@
+<class name="OrderInvoice">	
+	<atb name="ticket" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>Unique</constraint> 			
+			<constraint>Pattern{\d{6}-\w{4}</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="placementMoment" association="false">
+		<type>Date</type>
+		<listConstraint>			
+			<constraint>NotNull</constraint> 			
+			<constraint>Past</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="address" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="momentCanceled" association="false">
+		<type>Date</type>
+	</atb>
+	<atb name="creditCard" association="false">
+		<type>Credit Card</type>
+		<listConstraint>			
+			<constraint>NotNull</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="deliveredMoment" association="false">
+		<type>Date</type>
+		<listConstraint>			
+			<constraint>Past</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="clerk" association="true">
+		<type>Clerk</type>	
+		<multiplicity>ManyToOne</multiplicity>
+		<optional>false</optional>
+	</atb>	
+	<atb name="consumer" association="true">
+		<type>Consumer</type>	
+		<multiplicity>ManyToOne</multiplicity>
+		<optional>true</optional>
+	</atb>	
+	<atb name="orderLine" association="true">
+		<type>OrderLine</type>	
+		<multiplicity>OneToMany</multiplicity>
+		<optional>false</optional>
+	</atb>	
+</class>

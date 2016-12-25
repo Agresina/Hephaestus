@@ -1,0 +1,26 @@
+<class name="Comment">	
+	<atb name="title" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="text" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="rating" association="false">
+		<type>Integer</type>
+		<listConstraint>			
+			<constraint>Range(0, 5)</constraint> 			
+			<constraint>NotNull</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="item" association="true">
+		<type>Item</type>	
+		<multiplicity>ManyToOne</multiplicity>
+		<optional>false</optional>
+	</atb>	
+</class>

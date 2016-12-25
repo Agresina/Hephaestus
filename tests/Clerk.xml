@@ -1,0 +1,8 @@
+<class name="Clerk">
+	<superclass>Actor</superclass>	
+	<atb name="orderInvoice" association="true">
+		<type>OrderInvoice</type>	
+		<multiplicity>OneToMany</multiplicity>
+		<optional>false</optional>
+	</atb>	
+</class>

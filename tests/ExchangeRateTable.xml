@@ -1,0 +1,11 @@
+<class name="ExchangeRateTable">	
+	<atb name="currency" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>Min(0)</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="value" association="false">
+		<type>double</type>
+	</atb>
+</class>

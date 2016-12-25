@@ -1,0 +1,16 @@
+<class name="Warehouse">	
+	<atb name="address" association="false">
+		<type>String</type>
+		<listConstraint>			
+			<constraint>NotBlank</constraint> 
+		</listConstraint>
+	</atb>
+	<atb name="name" association="false">
+		<type>String</type>
+	</atb>
+	<atb name="stock" association="true">
+		<type>Stock</type>	
+		<multiplicity>OneToMany</multiplicity>
+		<optional>true</optional>
+	</atb>	
+</class>

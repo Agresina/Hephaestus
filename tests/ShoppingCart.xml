@@ -1,0 +1,10 @@
+<class name="ShoppingCart">	
+	<atb name="comment" association="false">
+		<type>String</type>
+	</atb>
+	<atb name="quantity" association="true">
+		<type>Quantity</type>	
+		<multiplicity>OneToMany</multiplicity>
+		<optional>true</optional>
+	</atb>	
+</class>
