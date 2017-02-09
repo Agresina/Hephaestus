@@ -22,6 +22,12 @@ public class HephTemplate {
 		return cfg;
 	}
 
+	//TODO: No crea la carpeta suministrada, si no existe da fallo
+	//TODO: Multiplicidad de atributos no relaciones -> EN servicio incluirlo
+	//TODO: Cargar todos los xml en uno solo y de ahí cargar los actores para introducirlos en Authority(dentro de security)
+	//TODO: Tener en cuenta multiplicidad en las vistas
+	//TODO: configuración. Con el xml que incluye todas las clases (probablemente solo nombre y si es actor) cargar con una plantilla todas
+	//TODO: XML completo: cargar todas las clases y escribirlas con una plantilla
 	public static FileWriter initFileWriter(String project, String nombreClase) {
 		FileWriter fw = null;
 		File f = null;

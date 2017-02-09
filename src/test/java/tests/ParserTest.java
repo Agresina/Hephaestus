@@ -20,7 +20,7 @@ public class ParserTest {
 		//Leemos el archivo
 		String pruebaUnArchivo = HephParser.parseFile(rutaUnArchivo).getName();
 		
-		System.out.println("Nombre de la clase le�da: " + pruebaUnArchivo);
+		System.out.println("Nombre de la clase leída: " + pruebaUnArchivo);
 		System.out.println("");
 		
 		//Prueba de lectura de carpeta

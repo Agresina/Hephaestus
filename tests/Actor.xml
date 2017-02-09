@@ -36,9 +36,4 @@
 		<multiplicity>OneToMany</multiplicity>
 		<optional>true</optional>
 	</atb>	
-	<atb name="message" association="true">
-		<type>Message</type>	
-		<multiplicity>OneToMany</multiplicity>
-		<optional>true</optional>
-	</atb>	
 </class>
