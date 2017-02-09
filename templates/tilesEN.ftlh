@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+	<definition name="${class.name?uncap_first}/list" extends="master.page">	
+		<put-attribute name="title" value="${class.name}s: List" />
+		<put-attribute name="body" value="/views/${class.name?uncap_first}/list.jsp" />
+	</definition>
+	
+	<definition name="${class.name?uncap_first}/edit" extends="master.page">	
+		<put-attribute name="title" value="${class.name}s: Edit" />
+		<put-attribute name="body" value="/views/${class.name?uncap_first}/edit.jsp" />
+	</definition>
+</tiles-definitions>
