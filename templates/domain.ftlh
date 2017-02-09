@@ -15,10 +15,6 @@ public class ${class.name} extends ${class.superclass} {
 	<#if class.attributes??>
 		<#list class.attributes as atb>
 			<#if !atb.association>
-				<#if atb.constraints??>
-					<#list atb.constraints as con>
-	@${con}
-					</#list></#if>
 	private ${atb.type} ${atb.name};
 			</#if>
 		</#list>
@@ -28,10 +24,6 @@ public class ${class.name} extends ${class.superclass} {
 	<#if class.attributes??>
 		<#list class.attributes as atb>
 			<#if atb.association>
-				<#if atb.constraints??>
-					<#list atb.constraints as con>
-	@${con}
-					</#list></#if>
 	private ${atb.type} ${atb.name};
 			</#if>
 		</#list>
@@ -44,12 +36,43 @@ public class ${class.name} extends ${class.superclass} {
 	
 	
 	<#list class.attributes as atb>
-	public ${atb.type?cap_first} get${atb.name}() {
-		return ${atb.name};
+	<#if atb.constraints??>
+					<#list atb.constraints as con>
+	@${con}
+					</#list>
+	</#if>
+	<#if atb.association==true>
+	@${atb.multiplicity}<#rt>
+		<#if atb.optional==false && atb.multiplicity=="OneToMany">
+			<#lt>(mappedBy = "${class.name?lower_case}", optional = false)
+			<#else>
+				<#if atb.optional==false>
+					<#lt>(optional = false)
+					<#else>
+						<#lt>(mappedBy = "${class.name?lower_case}")
+				</#if>
+		</#if>
+	@Valid
+	</#if>
+	public <#if atb.association==true><#rt>
+				<#if atb.multiplicity=="OneToMany" || atb.multiplicity=="ManyToMany">
+					<#t>Collection<<#rt>
+				</#if>
+				<#t>${atb.type?capitalize?replace(" ", "")}<#t>
+				<#if atb.association==true>
+					<#if atb.multiplicity=="OneToMany" || atb.multiplicity=="ManyToMany">
+						<#lt>><#rt>
+					</#if>
+				</#if>
+			</#if>
+				<#lt>get${atb.name?capitalize?replace(" ", "")}() {
+		return ${atb.name?capitalize?replace(" ", "")?uncap_first};
 	}
-		
-	public void set${atb.name?cap_first}(${atb.type} ${atb.name}) {
-		this.${atb.name} = ${atb.name};
-	}	
+
+	public void set${atb.name?capitalize?capitalize?replace(" ", "")}(${atb.type?capitalize?replace(" ", "")} ${atb.name?capitalize?replace(" ", "")?uncap_first}) {
+		this.${atb.name?capitalize?replace(" ", "")?uncap_first} = ${atb.name?capitalize?replace(" ", "")?uncap_first};
+	}
+	
+	
 	</#list>
 }
