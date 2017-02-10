@@ -8,6 +8,7 @@ public class Class {
 
 	private String superclass;
 	private String name;
+	private TipoClass tipoClass;
 	private List<Attribute> attributes;
 	private List<String> imports;
 
@@ -22,6 +23,7 @@ public class Class {
 		this.attributes = new ArrayList<Attribute>();
 		this.imports = new ArrayList<String>();
 		this.superclass = "DomainEntity";
+		this.tipoClass = TipoClass.Entity;
 	}
 
 	public Class(String name, Collection<Attribute> attributes) {
@@ -29,6 +31,7 @@ public class Class {
 		this.attributes = new ArrayList<Attribute>();
 		this.imports = new ArrayList<String>();
 		this.superclass = "DomainEntity";
+		this.tipoClass = TipoClass.Entity;
 
 		attributes.addAll(attributes);
 
@@ -41,6 +44,11 @@ public class Class {
 		this.imports = new ArrayList<String>();
 
 		attributes.addAll(attributes);
+		if(superclass.equalsIgnoreCase("Actor")) {
+			this.tipoClass = TipoClass.Actor;
+		} else {
+			this.tipoClass = TipoClass.Entity;
+		}
 
 	}
 
@@ -103,6 +111,14 @@ public class Class {
 		}
 
 		setImports(res);
+	}
+	
+	public TipoClass getTipoClass() {
+		return tipoClass;
+	}
+
+	public void setTipoClass(TipoClass tipoClass) {
+		this.tipoClass = tipoClass;
 	}
 
 	private String checkImport(String cad) {
