@@ -36,32 +36,32 @@ public class HephUtil {
 	//Genera las clases de dominio dada una carpeta de proyecto y un listado de clases
 	public static void generateDomain(String proyectFolder, Collection<domain.Class> classes) {
 		for(domain.Class clas: classes) {
-			generateFile(proyectFolder, DOMAIN, clas.getName()+".java", clas, "domain.ftlh");
+			generateFile(proyectFolder, DOMAIN, clas.getName()+"", clas, "domain.ftlh");
 		}
 	}
 
 	public static void generateRepository(String proyectFolder, Collection<domain.Class> classes) {
 		for(domain.Class clas: classes) {
-			generateFile(proyectFolder, REPOSITORY, clas.getName()+"Repository.java", clas, "repository.ftlh");
+			generateFile(proyectFolder, REPOSITORY, clas.getName()+"Repository", clas, "repository.ftlh");
 		}
 	}
 	
 	public static void generateService(String proyectFolder, Collection<domain.Class> classes) {
 		for(domain.Class clas: classes) {
-			generateFile(proyectFolder, SERVICE, clas.getName()+"Service.java", clas, "service.ftlh");
+			generateFile(proyectFolder, SERVICE, clas.getName()+"Service", clas, "service.ftlh");
 		}
 	}
 	
 	public static void generateConverter(String proyectFolder, Collection<domain.Class> classes) {
 		for(domain.Class clas: classes) {
-			generateFile(proyectFolder, CONVERTER, clas.getName()+"toStringConverter.java", clas, "converterToString.ftlh");
-			generateFile(proyectFolder, CONVERTER, "StringTo"+clas.getName()+"Converter.java", clas, "converterToClass.ftlh");
+			generateFile(proyectFolder, CONVERTER, clas.getName()+"toStringConverter", clas, "converterToString.ftlh");
+			generateFile(proyectFolder, CONVERTER, "StringTo"+clas.getName()+"Converter", clas, "converterToClass.ftlh");
 		}
 	}
 	
 	public static void generateController(String proyectFolder, Collection<domain.Class> classes) {
 		for(domain.Class clas: classes) {
-			generateFile(proyectFolder, CONTROLLER, clas.getName()+"Controller.java", clas, "controller.ftlh");
+			generateFile(proyectFolder, CONTROLLER, clas.getName()+"Controller", clas, "controller.ftlh");
 		}
 	}
 
