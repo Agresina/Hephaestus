@@ -33,7 +33,7 @@ public class HephTemplate {
 		File f = null;
 		try {
 			f = new File(project);
-			f.getParentFile().mkdirs();
+			f.mkdirs();
 			fw = new FileWriter(project + nombreClase + ".java");
 		} catch (IOException e) {
 			e.printStackTrace();
