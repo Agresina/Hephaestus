@@ -1,11 +1,15 @@
 package exec;
 
 import java.io.File;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+
+import javax.swing.JOptionPane;
 
 import util.HephUtil;
 
 public class main {
-	
+
 	private static final String rutaProyecto = "\\Proyecto\\";
 	private static final String rutaClases = "\\Clases\\";
 
@@ -14,11 +18,12 @@ public class main {
 			File f = new File(".");
 			System.out.println(f.getCanonicalPath());
 			// TODO Auto-generated method stub
-			HephUtil.genera(f.getCanonicalPath()+rutaProyecto,f.getCanonicalPath()+ rutaClases);
-		} catch(Exception e) {
+			HephUtil.genera(f.getCanonicalPath() + rutaProyecto, f.getCanonicalPath() + rutaClases);
+			JOptionPane.showMessageDialog(null, "Generado");
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

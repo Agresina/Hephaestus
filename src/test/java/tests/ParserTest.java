@@ -8,7 +8,7 @@ import util.HephParser;
 public class ParserTest {
 	
 	
-	private static String rutaUnArchivo = "./tests/Item.xml";
+	private static String rutaUnArchivo = "./tests/Consumer.xml";
 	private static String rutaCarpeta = "./tests/";
 	
 	public static void main(String[] args) {
@@ -18,10 +18,11 @@ public class ParserTest {
 		System.out.println("Prueba de lectura de un archivo - Item");
 		
 		//Leemos el archivo
-		String pruebaUnArchivo = HephParser.parseFile(rutaUnArchivo).getName();
+		Class pruebaUnArchivo = HephParser.parseFile(rutaUnArchivo);
 		
-		System.out.println("Nombre de la clase leída: " + pruebaUnArchivo);
-		System.out.println("");
+		System.out.println("Nombre de la clase leída: " + pruebaUnArchivo.getName());
+		System.out.println("Superclass de la clase leída: " + pruebaUnArchivo.getSuperclass());
+		System.out.println("Tipo de la clase leída: " + pruebaUnArchivo.getTipoClass());
 		
 		//Prueba de lectura de carpeta
 		System.out.println("Prueba de lectura de una carpeta");

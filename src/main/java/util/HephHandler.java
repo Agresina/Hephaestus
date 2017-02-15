@@ -17,6 +17,8 @@ public class HephHandler extends DefaultHandler {
 	private List<Class> classes;
 	private Class hClass;
 
+	private String superclass;
+	
 	// Atributos para crear atributos
 	private List<Attribute> atbs;
 	private Attribute atb;
@@ -30,6 +32,7 @@ public class HephHandler extends DefaultHandler {
 	boolean bConstraint = false;
 	boolean bMultiplicity = false;
 	boolean bOptional = false;
+	boolean bSuperclass = false;
 
 	public List<Class> getClasses() {
 		return classes;
@@ -54,7 +57,10 @@ public class HephHandler extends DefaultHandler {
 			// Inicializar lista de clases
 			if (classes == null)
 				classes = new ArrayList<Class>();
-
+			
+		//la etiqueta es superclass	
+		}else if(qName.equalsIgnoreCase("superclass")) {
+			bSuperclass = true;
 			// la etiqueta es un atributo
 		} else if (qName.equalsIgnoreCase("atb")) {
 			// Crear un nuevo atributo con los datos dados:
@@ -87,12 +93,20 @@ public class HephHandler extends DefaultHandler {
 			// A�adir la lista de atributos a la clase
 			hClass.setAttributes(atbs);
 			hClass.generateImports();
+			
 			// A�adir clase a la lista de clases
 			classes.add(hClass);
 			// Limpiar datos
-			//atb = null;
-			//atbs = null;
-			//hClass = null;
+			atb = null;
+			atbs = null;
+			hClass = null;
+			superclass=null;
+		} else if(qName.equalsIgnoreCase("superclass")) {
+			//Set the superclass, if none specified, it is "DomainEntity"
+			if(superclass!=null)
+				hClass.setSuperclass(superclass);
+			else
+				hClass.setSuperclass("DomainEntity");
 		} else if (qName.equalsIgnoreCase("atb")) {
 			// A�adir atributo a la lista de atributos
 			atbs.add(atb);
@@ -119,6 +133,9 @@ public class HephHandler extends DefaultHandler {
             //Elemento type, set type de Atributo
             atb.setType(new String(ch, start, length));
             bType = false;
+        } else if(bSuperclass) {
+        	superclass = new String(ch,start,length);
+        	bSuperclass = false;
         } else if (bConstraint) {
             constraint = new String(ch, start, length);
             constraint = checkConstraint(constraint);

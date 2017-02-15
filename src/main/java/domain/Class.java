@@ -58,6 +58,11 @@ public class Class {
 
 	public void setSuperclass(String superclass) {
 		this.superclass = superclass;
+		if(superclass.equalsIgnoreCase("Actor")) {
+			this.tipoClass = TipoClass.Actor;
+		} else {
+			this.tipoClass = TipoClass.Entity;
+		}
 	}
 
 	public String getName() {
