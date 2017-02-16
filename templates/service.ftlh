@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import domain.Actor;
-import domain.Administrator;
+import domain.${class.name};
 import repositories.${class.name}Repository;
 import security.LoginService;
 import security.UserAccount;
