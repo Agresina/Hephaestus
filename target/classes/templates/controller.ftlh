@@ -1,4 +1,4 @@
-package controllers.administrator;
+package controller;
 
 
 import java.util.Collection;
@@ -40,10 +40,10 @@ public class ${class.name}Controller extends AbstractController {
 		ModelAndView result;
 		Collection<${class.name}> ${class.name?uncap_first}s;
 		
-		${class.name?uncap_first}s = ${class.name?uncap_first}Service.findAll${class.name}sGroupByCategory();
+		${class.name?uncap_first}s = ${class.name?uncap_first}Service.findAll();
 		result = new ModelAndView("${class.name?uncap_first}/list");
 		result.addObject("${class.name?uncap_first}s", ${class.name?uncap_first}s);
-		result.addObject("requestURI","${class.name?uncap_first}/administrator/list.do");
+		result.addObject("requestURI","${class.name?uncap_first}/list.do");
 		
 		return result;
 	}

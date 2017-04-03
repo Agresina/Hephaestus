@@ -18,6 +18,10 @@
 		<value>/views/security/tiles.xml</value>
 		<value>/views/welcome/tiles.xml</value>
 		
-			</util:list>
+		<#list classes as class>
+		<!-- ${class.name} -->
+		<value>/views/${class.name?lower_case}/tiles.xml</value>
+	</#list>
+	</util:list>
 
 </beans>

@@ -10,7 +10,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="permitAll)">
+<security:authorize access="permitAll">
 	<div>
 		<H5>
 			<a href="${class.name?uncap_first}/create.do"> <spring:message
@@ -22,14 +22,14 @@
 
 <!-- Listing grid -->
 <display:table pagesize="5" class="displaytag" keepStatus="true"
-	name="${class.name?uncap_first}s" requestURI="${requestURI}" id="row">
+	name="${class.name?uncap_first}s" requestURI="${r"${requestURI}"}" id="row">
 
 
 	<!-- Attributes -->
 
 	<security:authorize access="permitAll">
 		<display:column>
-			<a href="${class.name?uncap_first}/edit.do?${class.name?uncap_first}Id=${row.id}"> <spring:message
+			<a href="${class.name?uncap_first}/edit.do?${class.name?uncap_first}Id=${r"${row.id}"}> <spring:message
 					code="${class.name?uncap_first}.edit" />
 			</a>
 		</display:column>

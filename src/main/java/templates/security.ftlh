@@ -41,7 +41,12 @@
 
 		<security:intercept-url pattern="/welcome/index.do" access="permitAll" /> 
 		
-		
+		<#list classes as class>
+		<!--  ${class.name?upper_case}  -->	
+		<security:intercept-url pattern="/${class.name?lower_case}/list.do" access="permitAll" />
+		<security:intercept-url pattern="/${class.name?lower_case}/edit.do" access="permitAll" />
+		</#list>
+
 		
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 

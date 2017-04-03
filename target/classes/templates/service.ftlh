@@ -8,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import domain.Actor;
-import domain.Administrator;
-import repositories.ActorRepository;
+import domain.${class.name};
+import repositories.${class.name}Repository;
 import security.LoginService;
 import security.UserAccount;
 
@@ -54,6 +53,12 @@ public class ${class.name}Service {
 	public ${class.name} save(${class.name} ${class.name?uncap_first}) {
 		Assert.notNull(${class.name?uncap_first});
 		return ${class.name?uncap_first}Repository.save(${class.name?uncap_first});
+	}
+	
+	public void delete(${class.name} ${class.name?uncap_first}) {
+		Assert.notNull(${class.name?uncap_first});
+		Assert.isTrue(${class.name?uncap_first}Repository.exists(${class.name?uncap_first}.getId()));
+		${class.name?uncap_first}Repository.delete(${class.name?uncap_first});
 	}
 
 	// Other business methods -----------------------

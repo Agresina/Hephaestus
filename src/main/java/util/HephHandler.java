@@ -74,7 +74,7 @@ public class HephHandler extends DefaultHandler {
 
 		} else if (qName.equalsIgnoreCase("type")) {
 			bType = true;
-		} else if (qName.equalsIgnoreCase("listConstraint")) {
+		} else if (qName.equalsIgnoreCase("constraints")) {
 			// Inicializar lista de constraints
 			if (constraints == null)
 				constraints = new ArrayList<String>();
@@ -101,6 +101,7 @@ public class HephHandler extends DefaultHandler {
 			atbs = null;
 			hClass = null;
 			superclass=null;
+			constraints=null;
 		} else if(qName.equalsIgnoreCase("superclass")) {
 			//Set the superclass, if none specified, it is "DomainEntity"
 			if(superclass!=null)
@@ -112,17 +113,17 @@ public class HephHandler extends DefaultHandler {
 			atbs.add(atb);
 			// Limpiar
 			//atb = null;
-		} else if (qName.equalsIgnoreCase("listConstraint")) {
+		} else if (qName.equalsIgnoreCase("constraints")) {
 			// A�adir lista de constraints al atributo
 			atb.setConstraints(constraints);
 			// Limpiar
-			//constraints = null;
+			constraints = null;
 		} else if (qName.equalsIgnoreCase("constraint")) {
 			// A�adir constraint a la lista de constraints
 			if(!constraints.contains(constraint))
 				constraints.add(constraint);
 			// Limpiar
-			//constraint = null;
+			constraint = null;
 		}
 	}
 	
@@ -138,6 +139,8 @@ public class HephHandler extends DefaultHandler {
         	bSuperclass = false;
         } else if (bConstraint) {
             constraint = new String(ch, start, length);
+            if(constraint.contains("Pattern"))
+            	System.out.println("es un pattern");
             constraint = checkConstraint(constraint);
             bConstraint = false;
         } else if (bMultiplicity) {
@@ -158,8 +161,8 @@ public class HephHandler extends DefaultHandler {
 			String aux1 = constraint.substring(constraint.indexOf("(")+1,constraint.indexOf(","));
 			String aux2 = constraint.substring(constraint.indexOf(",")+1,constraint.indexOf(")"));
 			res = "Range(min=" + aux1 + ", max=" + aux2 + ")";
-		} else if(constraint.contains("Pattern")) {
-			res = formatPattern(constraint);
+//		} else if(constraint.contains("Pattern")) {
+//			res = formatPattern(constraint);
 		} else {
 			res = constraint;
 		}

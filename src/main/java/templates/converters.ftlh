@@ -25,6 +25,12 @@
 		<bean class="converters.AuthorityToStringConverter"/>
 		<bean class="converters.StringToAuthorityConverter"/>
 		
-		</util:list>
+	<#list classes as class>
+		<!-- ${class.name} -->
+		<bean class="converters.${class.name}ToStringConverter"/>
+		<bean class="converters.StringTo${class.name}Converter"/>
+		
+	</#list>
+	</util:list>
 	
 </beans>

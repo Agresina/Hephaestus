@@ -103,6 +103,13 @@ public class Class {
 				cad = checkImport(atb.getType());
 				if (!cad.equals("") && !this.imports.contains(cad))
 					res.add(cad);
+				cad = checkImport(String.valueOf(atb.getMultiplicity()));
+				if (!cad.equals("") && !this.imports.contains(cad)) {
+					res.add(cad);
+					if(!this.imports.contains("javax.validation.Valid")){
+						res.add("javax.validation.Valid");
+					}
+				}
 				if (atb.getConstraints() != null) {
 					for (String cons : atb.getConstraints()) {
 						if (cons != null) {
@@ -134,32 +141,41 @@ public class Class {
 		} else if (cad.contains("List")) {
 			res = "java.util.List";
 		} else if (cad.equals("NotBlank")) {
-			res = "import javax.validation.constraints.NotBlank;";
+			res = "org.hibernate.validator.constraints.NotBlank";
 		} else if (cad.equals("NotNull")) {
-			res = "import javax.validation.constraints.NotNull";
-		} else if (cad.equals("Valid")) {
-			res = "import javax.validation.Valid";
+			res = "javax.validation.constraints.NotNull";
+		} else if (cad.contains("Valid")) {
+			res = "javax.validation.Valid";
 		} else if (cad.equals("Email")) {
-			res = "import javax.validation.constraints.Email";
+			res = "org.hibernate.validator.constraints.Email";
 		} else if (cad.equalsIgnoreCase("URL")) {
-			res = "import javax.validation.constraints.URL";
+			res = "org.hibernate.validator.constraints.URL";
 		} else if (cad.equals("CreditCardNumber")) {
-			res = "import javax.validation.constraints.CreditCardNumber";
+			res = "org.hibernate.validator.constraints.CreditCardNumber";
 		} else if (cad.equals("Past")) {
-			res = "import javax.validation.constraints.Past";
+			res = "javax.validation.constraints.Past";
 		} else if (cad.equals("Future")) {
-			res = "import javax.validation.constraints.Future";
+			res = "javax.validation.constraints.Future";
 		} else if (cad.contains("Column")) {
-			res = "import javax.persistence.Column";
+			res = "javax.persistence.Column";
 		} else if (cad.contains("Size")) {
-			res = "import javax.validation.constraints.Size";
+			res = "javax.validation.constraints.Size";
 		} else if (cad.contains("Min")) {
-			res = "import javax.validation.constraints.Min";
+			res = "javax.validation.constraints.Min";
 		} else if (cad.contains("Max")) {
-			res = "import javax.validation.constraints.Max";
+			res = "javax.validation.constraints.Max";
 		} else if (cad.contains("Range")) {
-			res = "import javax.validation.constraints.Range";
+			res = "org.hibernate.validator.constraints.Range";
+		} else if (cad.contains("Digits")) {
+			res = "javax.validation.constraints.Digits";
+		} else if (cad.contains("ManyToOne")) {
+			res = "javax.persistence.ManyToOne";
+		} else if (cad.contains("OneToMany")) {
+			res = "javax.persistence.OneToMany";
+		} else if (cad.contains("OneToOne")) {
+			res = "javax.persistence.OneToOne";
 		}
+		
 
 		return res;
 	}

@@ -54,6 +54,12 @@ public class ${class.name}Service {
 		Assert.notNull(${class.name?uncap_first});
 		return ${class.name?uncap_first}Repository.save(${class.name?uncap_first});
 	}
+	
+	public void delete(${class.name} ${class.name?uncap_first}) {
+		Assert.notNull(${class.name?uncap_first});
+		Assert.isTrue(${class.name?uncap_first}Repository.exists(${class.name?uncap_first}.getId()));
+		${class.name?uncap_first}Repository.delete(${class.name?uncap_first});
+	}
 
 	// Other business methods -----------------------
 

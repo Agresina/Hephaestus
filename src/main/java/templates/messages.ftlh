@@ -24,6 +24,10 @@
 		<value>/views/security/messages</value>
 		<value>/views/welcome/messages</value>
 		
-			</util:list>
+		<#list classes as class>
+		<!-- ${class.name} -->
+		<value>/views/${class.name?lower_case}/messages</value>
+	</#list>
+	</util:list>
 
 </beans>

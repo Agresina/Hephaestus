@@ -43,6 +43,7 @@ public class HephUtil {
 		generateController(proyectFolder, classes);
 		generateConfig(proyectFolder, classes);
 		generateViews(proyectFolder, classes);
+		generatePopulate(proyectFolder, classes);
 	}
 
 	public static void genera(String proyectFolder, String rutaClases) {
@@ -94,12 +95,12 @@ public class HephUtil {
 
 	public static void generateViews(String proyectFolder, Collection<domain.Class> classes) {
 		for (domain.Class clas : classes) {
-			generateFile(proyectFolder, VIEWS, "message.properties", clas, "messagesEN.ftlh");
-			generateFile(proyectFolder, VIEWS, "message_es.properties", clas, "messagesES.ftlh");
-			generateFile(proyectFolder, VIEWS, "list.jsp", clas, "listView.ftlh");
-			generateFile(proyectFolder, VIEWS, "edit.jsp", clas, "editView.ftlh");
-			generateFile(proyectFolder, VIEWS, "tiles.xml", clas, "tilesEN.ftlh");
-			generateFile(proyectFolder, VIEWS, "tiles_es.xml", clas, "tilesES.ftlh");
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "message.properties", clas, "messagesEN.ftlh");
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "message_es.properties", clas, "messagesES.ftlh");
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "list.jsp", clas, "listView.ftlh");
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "edit.jsp", clas, "editView.ftlh");
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "tiles.xml", clas, "tilesEN.ftlh");
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "tiles_es.xml", clas, "tilesES.ftlh");
 		}
 	}
 	
@@ -162,6 +163,7 @@ public class HephUtil {
 			
 			root.put("classes", classes);
 			root.put("NUM_POPULATE", NUM_POPULATE);
+			root.put("ACTOR", loadActorClass(classes));
 
 			for (String a : actors.keySet()) {
 				root.put(a, actors.get(a));
@@ -187,6 +189,17 @@ public class HephUtil {
 			hashtext = "0" + hashtext;
 		}
 		return hashtext;
+	}
+	
+	public static Class loadActorClass(Collection<Class> classes) {
+		Class res = null;
+		for(Class clas: classes) {
+			if(clas.getName().equalsIgnoreCase("actor")) {
+				res = clas;
+				break;
+			}
+		}
+		return res;
 	}
 
 	// Returns a list of the actors of the classes
@@ -227,6 +240,11 @@ public class HephUtil {
 		}
 
 		return actors;
+	}
+	
+	private static String firstToLower(String s) {
+		String res = s.substring(0,1).toLowerCase() + s.substring(1);
+		return res;
 	}
 
 }
