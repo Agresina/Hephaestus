@@ -95,8 +95,8 @@ public class HephUtil {
 
 	public static void generateViews(String proyectFolder, Collection<domain.Class> classes) {
 		for (domain.Class clas : classes) {
-			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "message.properties", clas, "messagesEN.ftlh");
-			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "message_es.properties", clas, "messagesES.ftlh");
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "messages.properties", clas, "messagesEN.ftlh");
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "messages_es.properties", clas, "messagesES.ftlh");
 			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "list.jsp", clas, "listView.ftlh");
 			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "edit.jsp", clas, "editView.ftlh");
 			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "tiles.xml", clas, "tilesEN.ftlh");
