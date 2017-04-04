@@ -10,8 +10,8 @@ import util.HephUtil;
 
 public class main {
 
-	private static final String rutaProyecto = "\\Proyecto\\";
-	private static final String rutaClases = "\\Clases\\";
+	private static final String rutaProyecto = "//Proyecto//";
+	private static final String rutaClases = "//Clases//";
 
 	public static void main(String[] args) {
 		try {
