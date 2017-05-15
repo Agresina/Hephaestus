@@ -9,7 +9,8 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+<#assign pepe="${" >
 
 <form:form action="${class.name?uncap_first}/edit.do" modelAttribute="${class.name?uncap_first}">
 
@@ -18,12 +19,8 @@
 	
 	<#if class.attributes??>
 		<#list class.attributes as atb>
-			<form:label path="${atb.name?capitalize?replace(" ", "")?uncap_first}">
-			<spring:message code="${class.name?uncap_first}.${atb.name?capitalize?replace(" ", "")?uncap_first}" />:
-			</form:label>
-			<form:input path="${atb.name?capitalize?replace(" ", "")?uncap_first}" />
-			<form:errors cssClass="error" path="${atb.name?capitalize?replace(" ", "")?uncap_first}" />
-			<br />
+	<acme:textbox path="${atb.name?capitalize?replace(" ", "")?uncap_first}" code="${class.name?uncap_first}.${atb.name?capitalize?replace(" ", "")?uncap_first}" />
+	<br />
 		</#list>
 	</#if>
 
@@ -32,7 +29,7 @@
 	<input type="submit" name="save"
 		value="<spring:message code="${class.name?uncap_first}.save" />" />
 
-	<jstl:if test="\$\{${class.name?uncap_first}.id != 0}">
+	<jstl:if test="${pepe}${class.name?uncap_first}.id != 0}">
 		<input type="submit" name="delete"
 			value="<spring:message code="${class.name?uncap_first}.delete" />"
 			onclick="return confirm('<spring:message code="${class.name?uncap_first}.confirm.delete" />')" />&nbsp;

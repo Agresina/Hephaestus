@@ -44,22 +44,26 @@ public class ${class.name} extends ${class.superclass} {
 	<#if atb.association==true>
 	@${atb.multiplicity}<#rt>
 		<#if atb.optional==false && atb.multiplicity=="OneToMany">
-			<#lt>(mappedBy = "${class.name?uncap_first}", optional = false)
+			<#lt>(mappedBy = "${class.name?uncap_first}")
 			<#else>
 				<#if atb.optional==false>
 					<#lt>(optional = false)
 					<#else>
 						<#if atb.multiplicity=="OneToMany">
-							<#lt>(mappedBy = "${class.name}")
+							<#lt>(mappedBy = "${class.name?uncap_first}")
 						</#if>
 				</#if>
 		</#if>
 	@Valid
 	</#if>
+	<#if atb.type=="Date">
+			<#lt>	@Temporal(TemporalType.TIMESTAMP)
+			<#lt>	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	</#if>
 	public <#if isMultiple(atb)><#rt>
-					<#t>Collection<<#rt>
+					<#lt>Collection<<#rt>
 			</#if>
-			<#lt>${atb.type}<#t>
+			<#lt>${atb.type}<#rt>
 				<#if isMultiple(atb)><#rt>
 						<#lt>><#rt>
 				</#if>
@@ -70,16 +74,15 @@ public class ${class.name} extends ${class.superclass} {
 	public void set${atb.name?cap_first}<#rt>
 	<#lt><#if isMultiple(atb)>s</#if><#lt>(<#rt>
 	<#if isBasic(atb.type)><#lt>${atb.type}<#rt>
-		<#else><#lt>${atb.type?cap_first}<#rt>
+		<#else><#lt><#if isMultiple(atb)>Collection<</#if>${atb.type?cap_first}<#if isMultiple(atb)>></#if><#rt>
 	</#if>
-	<#lt> ${atb.name}<#rt>
+	<#lt> ${atb.name}<#if isMultiple(atb)>s</#if><#rt>
 	<#lt>) {
 		this.${atb.name}<#if isMultiple(atb)>s</#if> = ${atb.name}<#if isMultiple(atb)>s</#if>;
 	}
 	
 	
 	</#list>
-	
 	<#function isBasic type>
 		<#local res = false>
 		<#if type?lower_case == "int" || type?lower_case == "string" || type?lower_case == "double">
@@ -87,7 +90,6 @@ public class ${class.name} extends ${class.superclass} {
 		</#if>
 		<#return res>
 	</#function>
-	
 	<#function isMultiple atb>
 		<#local res = false>
 			<#if atb.association == true>

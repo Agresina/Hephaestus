@@ -3,9 +3,6 @@
 <!-- 
  * security.xml
  *
- * Copyright (C) 2014 Universidad de Sevilla
- * Author (A) 2012 Rafael Corchuelo (corchu@us.es)
- * 
  * The use of this project is hereby constrained to the conditions of the 
  * TDG Licence, a copy of which you may download from 
  * http://www.tdg-seville.info/License.html
@@ -46,7 +43,6 @@
 		<security:intercept-url pattern="/${class.name?lower_case}/list.do" access="permitAll" />
 		<security:intercept-url pattern="/${class.name?lower_case}/edit.do" access="permitAll" />
 		</#list>
-
 		
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 

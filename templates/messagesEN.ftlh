@@ -1,6 +1,6 @@
 <#if class.attributes??>
 	<#list class.attributes as atb>
-		${class.name?uncap_first}.${atb.name?capitalize?replace(" ", "")?uncap_first} = ${atb.name?capitalize}
+${class.name?uncap_first}.${atb.name?capitalize?replace(" ", "")?uncap_first} = ${atb.name?capitalize}
 	</#list>
 </#if>
 

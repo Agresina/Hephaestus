@@ -3,8 +3,6 @@
 <!-- 
  * converters.xml
  *
- * Copyright (C) 2014 Universidad de Sevilla
- * 
  * The use of this project is hereby constrained to the conditions of the 
  * TDG Licence, a copy of which you may download from 
  * http://www.tdg-seville.info/License.html
@@ -24,8 +22,8 @@
 		-->
 		<bean class="converters.AuthorityToStringConverter"/>
 		<bean class="converters.StringToAuthorityConverter"/>
-		
 	<#list classes as class>
+	
 		<!-- ${class.name} -->
 		<bean class="converters.${class.name}ToStringConverter"/>
 		<bean class="converters.StringTo${class.name}Converter"/>

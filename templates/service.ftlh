@@ -10,8 +10,6 @@ import org.springframework.util.Assert;
 
 import domain.${class.name};
 import repositories.${class.name}Repository;
-import security.LoginService;
-import security.UserAccount;
 
 @Service
 @Transactional

@@ -3,9 +3,6 @@
 <!-- 
  * i18n-l10n.xml
  *
- * Copyright (C) 2014 Universidad de Sevilla
- * Author (A) 2012 Rafael Corchuelo (corchu@us.es)
- * 
  * The use of this project is hereby constrained to the conditions of the 
  * TDG Licence, a copy of which you may download from 
  * http://www.tdg-seville.info/License.html
@@ -24,8 +21,8 @@
 		<value>/views/security/messages</value>
 		<value>/views/welcome/messages</value>
 		
-		<#list classes as class>
-		<!-- ${class.name} -->
+	<#list classes as class>
+	<!-- ${class.name} -->
 		<value>/views/${class.name?lower_case}/messages</value>
 	</#list>
 	</util:list>
