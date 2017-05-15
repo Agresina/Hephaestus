@@ -2,7 +2,9 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Class {
 
@@ -10,18 +12,18 @@ public class Class {
 	private String name;
 	private TipoClass tipoClass;
 	private List<Attribute> attributes;
-	private List<String> imports;
+	private Set<String> imports;
 
 	public Class() {
 		super();
 		this.attributes = new ArrayList<Attribute>();
-		this.imports = new ArrayList<String>();
+		this.imports = new HashSet<String>();
 	}
 
 	public Class(String name) {
 		this.name = name;
 		this.attributes = new ArrayList<Attribute>();
-		this.imports = new ArrayList<String>();
+		this.imports = new HashSet<String>();
 		this.superclass = "DomainEntity";
 		this.tipoClass = TipoClass.Entity;
 	}
@@ -29,7 +31,7 @@ public class Class {
 	public Class(String name, Collection<Attribute> attributes) {
 		this.name = name;
 		this.attributes = new ArrayList<Attribute>();
-		this.imports = new ArrayList<String>();
+		this.imports = new HashSet<String>();
 		this.superclass = "DomainEntity";
 		this.tipoClass = TipoClass.Entity;
 
@@ -41,7 +43,7 @@ public class Class {
 		this.superclass = superclass;
 		this.name = name;
 		this.attributes = new ArrayList<Attribute>();
-		this.imports = new ArrayList<String>();
+		this.imports = new HashSet<String>();
 
 		attributes.addAll(attributes);
 		if(superclass.equalsIgnoreCase("Actor")) {
@@ -83,11 +85,11 @@ public class Class {
 		}
 	}
 
-	public List<String> getImports() {
+	public Set<String> getImports() {
 		return imports;
 	}
 
-	public void setImports(List<String> imports) {
+	public void setImports(Set<String> imports) {
 		this.imports = imports;
 	}
 
@@ -96,15 +98,18 @@ public class Class {
 	}
 
 	public void generateImports() {
-		List<String> res = new ArrayList<String>();
+		Set<String> res = new HashSet<String>();
 		String cad;
 		if (attributes != null) {
 			for (Attribute atb : attributes) {
+				if(atb.getMultiplicity() == TipoMultiplicity.ManyToMany || atb.getMultiplicity() == TipoMultiplicity.OneToMany) {
+					res.add("java.util.Collection");
+				}
 				cad = checkImport(atb.getType());
-				if (!cad.equals("") && !this.imports.contains(cad))
+				if (!cad.equals(""))
 					res.add(cad);
 				cad = checkImport(String.valueOf(atb.getMultiplicity()));
-				if (!cad.equals("") && !this.imports.contains(cad)) {
+				if (!cad.equals("")) {
 					res.add(cad);
 					if(!this.imports.contains("javax.validation.Valid")){
 						res.add("javax.validation.Valid");
@@ -121,6 +126,9 @@ public class Class {
 				}
 			}
 		}
+		
+		if(this.getName().equalsIgnoreCase("actor"))
+			res.add("security.UserAccount");
 
 		setImports(res);
 	}
@@ -140,6 +148,8 @@ public class Class {
 			res = "java.util.Collection";
 		} else if (cad.contains("List")) {
 			res = "java.util.List";
+		} else if (cad.contains("Date")) {
+			res = "java.util.Date";
 		} else if (cad.equals("NotBlank")) {
 			res = "org.hibernate.validator.constraints.NotBlank";
 		} else if (cad.equals("NotNull")) {
@@ -174,6 +184,8 @@ public class Class {
 			res = "javax.persistence.OneToMany";
 		} else if (cad.contains("OneToOne")) {
 			res = "javax.persistence.OneToOne";
+		} else if (cad.contains("Pattern")) {
+			res = "javax.validation.constraints.Pattern;";
 		}
 		
 

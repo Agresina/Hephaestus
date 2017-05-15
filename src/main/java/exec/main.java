@@ -1,8 +1,6 @@
 package exec;
 
 import java.io.File;
-import java.math.BigInteger;
-import java.security.MessageDigest;
 
 import javax.swing.JOptionPane;
 
@@ -13,13 +11,17 @@ public class main {
 	private static final String rutaProyecto = "//Proyecto//";
 	private static final String rutaClases = "//Clases//";
 
-	public static void main(String[] args) {
+	public static final void main(final String[] args) {
+		
+		System.out.println("========== Hephaestus Generator ==========");
+		
 		try {
 			File f = new File(".");
-			System.out.println(f.getCanonicalPath());
-			// TODO Auto-generated method stub
+			//System.out.println(f.getCanonicalPath());
+			System.out.println("---------- Generating ----------");
 			HephUtil.genera(f.getCanonicalPath() + rutaProyecto, f.getCanonicalPath() + rutaClases);
-			JOptionPane.showMessageDialog(null, "Generado");
+			System.out.println("========== All done! ==========");
+			//JOptionPane.showMessageDialog(null, "Generado");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

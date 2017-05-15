@@ -140,7 +140,7 @@ public class HephHandler extends DefaultHandler {
         } else if (bConstraint) {
             constraint = new String(ch, start, length);
             if(constraint.contains("Pattern"))
-            	System.out.println("es un pattern");
+            	//System.out.println("es un pattern");
             constraint = checkConstraint(constraint);
             bConstraint = false;
         } else if (bMultiplicity) {
@@ -157,7 +157,7 @@ public class HephHandler extends DefaultHandler {
 		String res;
 		if(constraint.equals("Unique")) {
 			res = "Column(unique=true)";
-		} else if(constraint.contains("Range")) {
+		} else if(constraint.toUpperCase().contains("RANGE")) {
 			String aux1 = constraint.substring(constraint.indexOf("(")+1,constraint.indexOf(","));
 			String aux2 = constraint.substring(constraint.indexOf(",")+1,constraint.indexOf(")"));
 			res = "Range(min=" + aux1 + ", max=" + aux2 + ")";

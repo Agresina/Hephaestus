@@ -20,18 +20,19 @@ public class HephUtil {
 	private static final int NUM_POPULATE = 3;
 
 	// Constantes que almacenen las rutas de las distintas partes del proyecto
-	private static final String DOMAIN = "\\src\\main\\java\\domain\\";
-	private static final String REPOSITORY = "\\src\\main\\java\\repositories\\";
-	private static final String SERVICE = "\\src\\main\\java\\services\\";
-	private static final String CONVERTER = "\\src\\main\\java\\converters\\";
-	private static final String CONTROLLER = "\\src\\main\\java\\controller\\";
+	private static final String DOMAIN = "//src//main//java//domain//";
+	private static final String REPOSITORY = "//src//main//java//repositories//";
+	private static final String SERVICE = "//src//main//java//services//";
+	private static final String CONVERTER = "//src//main//java//converters//";
+	private static final String CONTROLLER = "//src//main//java//controller//";
+	private static final String MASTERPAGE = "//src//main//webapp//views//master-page//";
 
 	// Archivos de configuracion
-	private static final String CONFIG = "\\src\\main\\resources\\spring\\config\\";
+	private static final String CONFIG = "//src//main//resources//spring//config//";
 	
-	private static final String POPULATE = "\\src\\main\\resources\\";
+	private static final String POPULATE = "//src//main//resources//";
 
-	private static final String VIEWS = "\\src\\main\\webapp\\views\\";
+	private static final String VIEWS = "//src//main//webapp//views//";
 
 	// TODO Añadir booleano para ver si la clase que se esta haciendo se ha
 	// generado correctamente
@@ -44,6 +45,7 @@ public class HephUtil {
 		generateConfig(proyectFolder, classes);
 		generateViews(proyectFolder, classes);
 		generatePopulate(proyectFolder, classes);
+		generateHeader(proyectFolder, classes);
 	}
 
 	public static void genera(String proyectFolder, String rutaClases) {
@@ -95,13 +97,19 @@ public class HephUtil {
 
 	public static void generateViews(String proyectFolder, Collection<domain.Class> classes) {
 		for (domain.Class clas : classes) {
-			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "messages.properties", clas, "messagesEN.ftlh");
-			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "messages_es.properties", clas, "messagesES.ftlh");
-			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "list.jsp", clas, "listView.ftlh");
-			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "edit.jsp", clas, "editView.ftlh");
-			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "tiles.xml", clas, "tilesEN.ftlh");
-			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "\\", "tiles_es.xml", clas, "tilesES.ftlh");
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "//", "messages.properties", clas, "messagesEN.ftlh");
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "//", "messages_es.properties", clas, "messagesES.ftlh");
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "//", "list.jsp", clas, "listView.ftlh");
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "//", "edit.jsp", clas, "editView.ftlh");
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "//", "tiles.xml", clas, "tilesEN.ftlh");
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "//", "tiles_es.xml", clas, "tilesES.ftlh");
 		}
+	}
+	
+	public static void generateHeader(String proyectFolder, Collection<domain.Class> classes) {
+		generateFile(proyectFolder, MASTERPAGE, "header.jsp", classes, "header.ftlh");
+		generateFile(proyectFolder, MASTERPAGE, "messages.properties", classes, "headerMessages.ftlh");
+		generateFile(proyectFolder, MASTERPAGE, "messages_es.properties", classes, "headerMessagesES.ftlh");
 	}
 	
 	public static void generatePopulate(String proyectFolder, Collection<domain.Class> classes) {
