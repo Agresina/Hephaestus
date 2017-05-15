@@ -12,6 +12,8 @@ public class Attribute {
 	private boolean optional;
 	private List<String> constraints;
 	
+	//TODO Atributo formato para distinguir entre string/fecha/numero
+	
 	public Attribute() {
 		super();
 		this.constraints = new ArrayList<String>();
