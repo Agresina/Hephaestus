@@ -12,7 +12,7 @@ public class UtilTest {
 	private static String rutaSalida = "./Output";
 	private static String rutaCarpeta = "./tests/";
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		System.out.println("Prueba de escritura de Populate");
 		System.out.println("");
 		

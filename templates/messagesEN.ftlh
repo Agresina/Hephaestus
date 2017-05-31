@@ -1,9 +1,12 @@
 <#if class.attributes??>
 	<#list class.attributes as atb>
-${class.name?uncap_first}.${atb.name?replace(" ", "")?uncap_first} = ${atb.name}
+${class.name?uncap_first}.${atb.name?replace(" ", "")?uncap_first} = ${messagesEN[atb.name]}
 	</#list>
 </#if>
 
+<#list messagesEN?keys as key>
+	${key} = ${messagesEN[key]}
+</#list>
 ${class.name?uncap_first}.edit = Edit
 ${class.name?uncap_first}.delete = Delete
 ${class.name?uncap_first}.save = Save

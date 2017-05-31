@@ -133,8 +133,8 @@ public class HephUtil {
 			elements.put("messagesEN", mensajesEN);
 			elements.put("messagesES", mensajesES);
 			
-			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()), "messages.properties", "messagesEN.ftlh", elements);
-			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()), "messages_es.properties", "messagesES.ftlh", elements);
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "//", "messages.properties", "messagesEN.ftlh", elements);
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "//", "messages_es.properties", "messagesES.ftlh", elements);
 			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "//", "list.jsp", clas, "listView.ftlh");
 			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "//", "edit.jsp", clas, "editView.ftlh");
 			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "//", "tiles.xml", clas, "tilesEN.ftlh");

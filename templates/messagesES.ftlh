@@ -1,6 +1,6 @@
 <#if class.attributes??>
 	<#list class.attributes as atb>
-${class.name?uncap_first}.${atb.name?capitalize?replace(" ", "")?uncap_first} = ${atb.name}
+${class.name?uncap_first}.${atb.name?capitalize?replace(" ", "")?uncap_first} = ${messagesES[atb.name]}
 	</#list>
 </#if>
 
