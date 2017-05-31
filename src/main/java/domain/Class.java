@@ -129,6 +129,12 @@ public class Class {
 		
 		if(this.getName().equalsIgnoreCase("actor"))
 			res.add("security.UserAccount");
+		
+		if(res.contains("java.util.Date")) {
+			res.add("javax.persistence.Temporal");
+			res.add("javax.persistence.TemporalType");
+			res.add("org.springframework.format.annotation.DateTimeFormat");
+		}
 
 		setImports(res);
 	}

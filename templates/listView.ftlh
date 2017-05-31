@@ -35,8 +35,8 @@
 	<#if class.attributes??>
 		<#list class.attributes as atb>
 			
-			<spring:message code="${class.name?uncap_first}.${atb.name?capitalize?replace(" ", "")?uncap_first}" var="${atb.name?capitalize?replace(" ", "")?uncap_first}" />
-			<display:column property="${atb.name?capitalize?replace(" ", "")?uncap_first}" title="${pepe}${atb.name?capitalize?replace(" ", "")?uncap_first}}" sortable="true" />
+			<spring:message code="${class.name?uncap_first}.${atb.name?replace(" ", "")?uncap_first}" var="${atb.name?replace(" ", "")?uncap_first}" />
+			<display:column property="${atb.name?replace(" ", "")?uncap_first}" title="${pepe}${atb.name?replace(" ", "")?uncap_first}}" sortable="true" />
 		</#list>
 	</#if>
 

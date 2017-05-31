@@ -43,17 +43,13 @@ public class ${class.name} extends ${class.superclass} {
 	</#if>
 	<#if atb.association==true>
 	@${atb.multiplicity}<#rt>
-		<#if atb.optional==false && atb.multiplicity=="OneToMany">
-			<#lt>(mappedBy = "${class.name?uncap_first}")
-			<#else>
 				<#if atb.optional==false>
 					<#lt>(optional = false)
 					<#else>
-						<#if atb.multiplicity=="OneToMany">
+						<#if atb.multiplicity=="OneToMany" || atb.multiplicity="OneToOne">
 							<#lt>(mappedBy = "${class.name?uncap_first}")
 						</#if>
 				</#if>
-		</#if>
 	@Valid
 	</#if>
 	<#if atb.type=="Date">

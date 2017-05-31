@@ -24,7 +24,7 @@ public class HephUtil {
 	private static final String REPOSITORY = "//src//main//java//repositories//";
 	private static final String SERVICE = "//src//main//java//services//";
 	private static final String CONVERTER = "//src//main//java//converters//";
-	private static final String CONTROLLER = "//src//main//java//controller//";
+	private static final String CONTROLLER = "//src//main//java//controllers//";
 	private static final String MASTERPAGE = "//src//main//webapp//views//master-page//";
 
 	// Archivos de configuracion

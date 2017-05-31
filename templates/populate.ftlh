@@ -52,7 +52,7 @@
 		<property name="${atb.name?uncap_first}" ref="${atb.name?uncap_first+num}" />
 					</#if>
 				<#else>
-		<property name="${atb.name?uncap_first}" value="${class.name+num+atb.name?cap_first}" />
+		<property name="${atb.name?uncap_first}" value="${generateValue2(class, atb, num)}" />
 				</#if>
 			</#if>
 		</#list>
@@ -62,7 +62,7 @@
 		<property name="${atb.name?uncap_first}" ref="${atb.name?uncap_first+num}" />
 				</#if>
 			<#else>
-		<property name="${atb.name?uncap_first}" value="${class.name+num+atb.name?cap_first}" />
+		<property name="${atb.name?uncap_first}" value="${generateValue2(class, atb, num)}" />
 			</#if>
 		</#list>
 		<property name="userAccount" ref="userAccount${class.name+num}" />
@@ -86,7 +86,7 @@
 				<#list class.attributes as atb>
 					<#if atb.association == true>
 						<#if atb.multiplicity != "OneToMany">
-		<property name="${atb.name?uncap_first}" ref="${atb.name?lower_case+num}" />
+		<property name="${atb.name?uncap_first}" ref="${atb.name?uncap_first+num}" />
 						</#if>
 					<#else>
 		<property name="${atb.name?uncap_first}" value="${generateValue(atb,num)}" />
@@ -146,6 +146,29 @@
 	</#if>
 	<#if atb.type == "String">
 		<#local value = atb.name?uncap_first+num />
+	</#if>
+	<#if atb.type == "boolean" || atb.type == "Boolean">
+		<#local value = "false" />
+	</#if>
+	<#return value />
+</#function>
+<#function generateValue2 class atb num>
+	<#local value = "fail"/>
+	<#if atb.type == "Double">
+		<#local value = randInt(0,10)/>
+	</#if>
+	<#if atb.type == "int" || atb.type == "Integer">
+		<#local value = randInt(0,10)/>
+	</#if>
+	<#if atb.type == "Date" >
+		<#local value = randDate()/>
+	</#if>
+	<#if atb.type == "String">
+		<#if atb.name == "email">
+			<#local value = class.name+num+"@email.com" />
+		<#else>
+			<#local value = class.name+num+atb.name?cap_first />
+		</#if>
 	</#if>
 	<#if atb.type == "boolean" || atb.type == "Boolean">
 		<#local value = "false" />
