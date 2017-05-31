@@ -5,11 +5,13 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import domain.Attribute;
 import domain.Class;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -36,7 +38,7 @@ public class HephUtil {
 
 	// TODO Añadir booleano para ver si la clase que se esta haciendo se ha
 	// generado correctamente
-	public static void genera(String proyectFolder, Collection<domain.Class> classes) {
+	public static void genera(String proyectFolder, Collection<domain.Class> classes) throws Exception {
 		generateDomain(proyectFolder, classes);
 		generateRepository(proyectFolder, classes);
 		generateService(proyectFolder, classes);
@@ -48,7 +50,7 @@ public class HephUtil {
 		generateHeader(proyectFolder, classes);
 	}
 
-	public static void genera(String proyectFolder, String rutaClases) {
+	public static void genera(String proyectFolder, String rutaClases) throws Exception {
 		List<domain.Class> classes = HephParser.parseAllFiles(rutaClases);
 		genera(proyectFolder, classes);
 	}
@@ -95,10 +97,44 @@ public class HephUtil {
 		generateFile(proyectFolder, CONFIG, "tiles.xml", classes, "tiles.ftlh");
 	}
 
-	public static void generateViews(String proyectFolder, Collection<domain.Class> classes) {
+	//Primer método en usar el generateFile nuevo, que recibe un Map
+	public static void generateViews(String proyectFolder, Collection<domain.Class> classes) throws Exception {
+		//Construimos el map, en el que introduciremos ademas de la clase que estamos procesando los mensajes
+		Map<String, Object> elements = new HashMap<String, Object>();
+		Map<String, Object> mensajesES = new HashMap<String, Object>();
+		Map<String, Object> mensajesEN = new HashMap<String, Object>();
+		
+		Translator translator = new Translator("en", "es");
+		
 		for (domain.Class clas : classes) {
-			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "//", "messages.properties", clas, "messagesEN.ftlh");
-			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "//", "messages_es.properties", clas, "messagesES.ftlh");
+			//Introducimos la clase
+			elements.put("class", clas);
+			
+			//Construimos un map para los mensajes, la clave es el nombre de atributo, el valor el mensaje construido. Uno para ES y otro para EN
+			String messEs = "";
+			String messEn = "";
+			for(Attribute att: clas.getAttributes()) {
+				String[] mess = att.getName().split("(?=\\p{Upper})");
+				
+				StringBuilder strBuilder = new StringBuilder();
+				for (int i = 0; i < mess.length; i++) {
+				   strBuilder.append(" ").append(mess[i]);
+				}
+				messEn = strBuilder.toString();
+				
+				messEs = translator.translate(messEn);
+				
+				System.out.println(messEn);
+				
+				mensajesEN.put(att.getName(), messEn);
+				mensajesES.put(att.getName(), messEs);
+			}
+			
+			elements.put("messagesEN", mensajesEN);
+			elements.put("messagesES", mensajesES);
+			
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()), "messages.properties", "messagesEN.ftlh", elements);
+			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()), "messages_es.properties", "messagesES.ftlh", elements);
 			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "//", "list.jsp", clas, "listView.ftlh");
 			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "//", "edit.jsp", clas, "editView.ftlh");
 			generateFile(proyectFolder, VIEWS + firstToLower(clas.getName()) + "//", "tiles.xml", clas, "tilesEN.ftlh");
@@ -178,6 +214,23 @@ public class HephUtil {
 			}
 
 			temp.process(root, fw);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/*Metodo al que habrá que migrar el resto, ya que con este podemos añadir desde el principio todos los objectos que queramos, tal y 
+	*como se hace con las vistas en spring
+	*/
+	public static void generateFile(String proyectFolder, String destFolder, String nombreFichero, String template, Map<String, Object> elements) {
+		try {
+			String ruta = proyectFolder + destFolder;
+
+			Configuration cfg = HephTemplate.initConfig();
+			Template temp = cfg.getTemplate(template);
+			FileWriter fw = HephTemplate.initFileWriter(ruta, nombreFichero);
+
+			temp.process(elements, fw);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
